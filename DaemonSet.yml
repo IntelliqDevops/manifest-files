@@ -1,0 +1,33 @@
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: ghost-daemonset
+  labels:
+    type: CMS
+spec:
+  selector:
+    matchLabels:
+      type: CMS
+  template:
+    metadata:
+      name: ghost-pod
+      labels:
+        type: CMS
+    spec:
+     containers:
+       - name: ghost
+         image: ghost
+         env:
+           - name: NODE_ENV
+             value: development
+         ports:
+           - containerPort: 2368
+             hostPort: 8080
+...
+
+
+
+
+
+
